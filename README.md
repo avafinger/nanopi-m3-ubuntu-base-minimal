@@ -38,7 +38,7 @@ System Requirements
 Instructions
 ------------
 
-**#1. Download this instructions**
+**1. Download this instructions**
 
 	git clone https://github.com/avafinger/nanopi-m3-ubuntu-base-minimal
 	cd nanopi-m3-ubuntu-base-minimal
@@ -50,17 +50,17 @@ or
 	cd nanopi-m3-ubuntu-base-minimal-master
 
 
-#2. Set up your chroot environment
+**2. Set up your chroot environment**
 
 We need the chroot tools to access the ARM64 Ubuntu Base rootfs from the X86_64 (HOST PC) and add some packages
 
 
-#3. Get the Ubuntu Base files
+**3. Get the Ubuntu Base files**
 
 	wget http://cdimage.ubuntu.com/ubuntu-base/xenial/daily/current/xenial-base-arm64.tar.gz
  
 
-#4. Find your SD CARD
+**4. Find your SD CARD**
 
 	dmesg|tail
 	[  181.158588] sd 6:0:0:0: [sdc] 30547968 512-byte logical blocks: (15.6 GB/14.6 GiB)
@@ -79,12 +79,12 @@ The SD CARD is in the format /dev/sdX where X is a letter (b,c,....), in our cas
 	sd card is /dev/sdc
 
 
-#5 Format *SD CARD* with specific geometry
+**5 Format *SD CARD* with specific geometry**
 
 	sudo ./format_sd.sh /dev/sdc
 
 
-#6 Prepare the *SD CARD* with Ubuntu Base Minimal Rootfs
+**6 Prepare the *SD CARD* with Ubuntu Base Minimal Rootfs**
 
 Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your device)
 
@@ -94,26 +94,26 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 	mount $SDCARD"2" rootfs
 
 
-#7 Decompress the rootfs
+**7 Decompress the rootfs**
 
 	tar -xvpzf ./xenial-base-arm64.tar.gz -C ./rootfs --numeric-ow
 	sync
 
 
-#8 Prepare the SD CARD to chroot
+**8 Prepare the SD CARD to chroot**
 
 	cp /usr/bin/qemu-aarch64-static ./rootfs/usr/bin/
 	sync
 
 
-#9 Prepare chroot the add some needed packages
+**9 Prepare chroot the add some needed packages**
 
 	cp -fv /etc/resolv.conf ./etc/resolv.conf
 	cp -rvf ./etc/* ./rootfs/etc
 	sync
 
 
-#10 Update our SD CARD with the pre-built kernel
+**10 Update our SD CARD with the pre-built kernel**
 
 	mkdir -p ./rootfs/lib/modules
 	sudo tar -xvpzf kernel.tar.gz -C ./rootfs/lib/modules --numeric-ow
@@ -131,7 +131,7 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 	apt-get install net-tools
 	sync
 
-#11 Edit with your preferred editor the file ./rootfs/etc/passwd
+**11 Edit with your preferred editor the file ./rootfs/etc/passwd**
 
 Change the line from
 
@@ -144,7 +144,7 @@ to
 and save
 
 
-#12 Exit from chroot
+**12 Exit from chroot**
 
 	exit
 	umount ./rootfs
@@ -152,7 +152,7 @@ and save
 	rm -rf ./rootfs
 
 
-#13 Prepare the Boot
+**13 Prepare the Boot**
 
 	mkdir -p boot
 	mount $SDCARD"1" boot
@@ -164,7 +164,16 @@ and save
 	sleep 1
 	rm -rf ./boot
 
-#14 We have now our Ubuntu Base Minimal Image on *SD CARD*
+
+*Prepare the booloader*
+
+	sudo dd if=bl1.bin of=/dev/sdc seek=1
+	sync
+	sudo dd if=u-boot.bin of=/dev/sdc seek=64
+	sync
+
+
+**14 We have now our Ubuntu Base Minimal Image on *SD CARD* **
 
 	Just make sure the SD CARD is unmounted e and remove it from the USB reader/writer
 
@@ -172,7 +181,7 @@ You can boot the board with this new SD CARD, default to DHCP.
 You will be asked the user: root (without the password)
 	
 
-#15 If you read this, you have suceeded and from now on you should:
+**15 If you read this, you have suceeded and from now on you should:**
 
 * apt-get update and apt-get dist-upgrade
 * Add user, add sudoers, etc.... and restore the line we changed in the passwd file
