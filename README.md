@@ -132,6 +132,7 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 
 	chroot ./rootfs /bin/bash
 	(*) apt-get install network-manager (add a ton of packages you may not need)
+	apt-get install kmod
 	apt-get install ifupdown
 	apt-get install net-tools
 	sync
