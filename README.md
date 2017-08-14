@@ -130,6 +130,8 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 	apt-get install ifupdown
 	apt-get install net-tools
 	sync
+	exit (*Exit from chroot*)
+
 
 **11. Edit with your preferred editor the file ./rootfs/etc/passwd**
 
@@ -144,9 +146,8 @@ to
 and save
 
 
-**12. Exit from chroot**
+**12. Unmount the partition**
 
-	exit
 	umount ./rootfs
 	sleep 1
 	rm -rf ./rootfs
@@ -175,7 +176,7 @@ and save
 
 **14. We have now our Ubuntu Base Minimal Image on SD CARD**
 
-	Just make sure the SD CARD is unmounted e and remove it from the USB reader/writer
+	Just make sure the SD CARD is unmounted and remove it from the USB reader/writer
 
 You can boot the board with this new SD CARD, default to DHCP.
 You will be asked the user: root (without the password)
