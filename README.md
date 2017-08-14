@@ -38,21 +38,21 @@ System Requirements
 Instructions
 ------------
 
- 1. Download this instructions
+**#1. Download this instructions**
 
 	git clone https://github.com/avafinger/nanopi-m3-ubuntu-base-minimal
 	cd nanopi-m3-ubuntu-base-minimal
 
- or
+or
 
 	Use *Clone or download* green button
 	uncompress
 	cd nanopi-m3-ubuntu-base-minimal-master
 
 
- 2. Set up your chroot environment
+#2. Set up your chroot environment
 
- We need the chroot tools to access the ARM64 Ubuntu Base rootfs from the X86_64 (HOST PC) and add some packages
+We need the chroot tools to access the ARM64 Ubuntu Base rootfs from the X86_64 (HOST PC) and add some packages
 
 
 #3. Get the Ubuntu Base files
