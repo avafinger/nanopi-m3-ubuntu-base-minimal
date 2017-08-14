@@ -1,0 +1,26 @@
+# interfaces(5) file used by ifup(8) and ifdown(8)
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet dhcp
+##allow-hotplug eth0
+##no-auto-down eth0
+##iface eth0 inet static
+##address 192.168.0.100
+##netmask 255.255.0.0
+##gateway 192.168.254.254
+##dns-nameservers 8.8.8.8 8.8.4.4
+
+#allow-hotplug wlan0
+#iface wlan0 inet dhcp
+#	wpa-ssid "MY_SSID"
+#	wpa-psk "MY_PASSWORD"
+#address 192.168.254.55
+#netmask 255.255.0.0
+#gateway 192.168.254.254
+#dns-nameservers 8.8.8.8 8.8.4.4
+#wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+# Disable power saving on compatible chipsets (prevents SSH/connection dropouts over WiFi)
+#wireless-mode Managed
+#wireless-power off
