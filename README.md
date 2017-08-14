@@ -3,15 +3,18 @@ Ubuntu Base Minimal Image (Xenial Xerus 16.04.3)
 
 This are my annotations on how to build Ubuntu Xenial Base Minimal Image (barebone minimal image) for the Nano Pi M3 (HOWTO).
 
-|                      |footprint |
-|----------------------|----------|
-|RAM Memory usage      |  62 MB   |
-|Rootfs size           | 735 MB   |
+|                        |     footprint     |
+|------------------------|-------------------|
+|RAM Memory usage        |  43 /  (*) 62 MB  |
+|Rootfs size             | 391 / (*) 735 MB  |
+|(*) with network-manager|                   |
 
 
 For this instructions we need a chroot environment and kernel 4.11.6 pre-built.
 I have a ready kernel 4.11.6 built with **GCC 7.1** but you can use any kernel or build your own.
 These instructions works with Ubuntu Xenial (linux box) but can be adapted to any Distro and can be used with other boards if you have a Kernel ready.
+
+#When you use this instructions for different board, chose the Kernel and bootloader target to that board.
 
 * Ubuntu Xenial 16.04 (Ubuntu Base)
 * 62 MB of RAM in use
@@ -30,7 +33,7 @@ System Requirements
 * SD CARD ( 2 GB will fit, but better use >= 8 GB )
 * USB reader/writer (get a good one)
 
-#Important
+**Important**
 
 * Get a good SD CARD brand and a good USB reader/writer or you will get the final SD CARD with bad data, don't blame me*
 
@@ -62,6 +65,8 @@ We need the chroot tools to access the ARM64 Ubuntu Base rootfs from the X86_64 
 
 **4. Find your SD CARD**
 
+Insert the **SD CARD** into USB card reader/writer and check:
+
 	dmesg|tail
 	[  181.158588] sd 6:0:0:0: [sdc] 30547968 512-byte logical blocks: (15.6 GB/14.6 GiB)
 	[  181.159831] sd 6:0:0:0: [sdc] Write Protect is off
@@ -86,7 +91,7 @@ The SD CARD is in the format /dev/sdX where X is a letter (b,c,....), in our cas
 
 **6. Prepare the *SD CARD* with Ubuntu Base Minimal Rootfs**
 
-Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your device)
+Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your device letter)
 
 	sudo su
 	export SDCARD=/dev/sdc
@@ -106,7 +111,7 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 	sync
 
 
-**9. Prepare chroot the add some needed packages**
+**9. Prepare chroot to add some needed packages**
 
 	cp -fv /etc/resolv.conf ./etc/resolv.conf
 	cp -rvf ./etc/* ./rootfs/etc
@@ -126,7 +131,7 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 *Chroot to SD CARD and add networking*
 
 	chroot ./rootfs /bin/bash
-	apt-get install network-manager
+	(*) apt-get install network-manager (add a ton of packages you may not need)
 	apt-get install ifupdown
 	apt-get install net-tools
 	sync
@@ -188,8 +193,8 @@ You will be asked the user: root (without the password)
 
 **15. If you read this, you have suceeded and from now on you should:**
 
-* apt-get update and apt-get dist-upgrade
-* Add user, add sudoers, etc.... and restore the line we changed in the passwd file
+* apt-get update and apt-get dist-upgrade and add packages
+* Add user, add sudoers, locales, timezone, keyboard layout, ssh, services, etc.... and restore the line we changed in the passwd file
 
 
 **Enjoy your Ubuntu Xenial Base Minimal Image!**
