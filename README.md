@@ -1,7 +1,7 @@
 Ubuntu Base Minimal Image (Xenial Xerus 16.04.3)
 ------------------------------------------------
 
-This are my annotations on how to build Ubuntu Xenial Base Minimal Image (barebone minimal image) for the Nano Pi M3 (HOWTO).
+These are my annotations on how to build Ubuntu Xenial Base Minimal Image (barebone minimal image) for the Nano Pi M3 (HOWTO).
 
 |                        |     footprint     |
 |------------------------|-------------------|
