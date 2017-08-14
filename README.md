@@ -10,8 +10,8 @@ This are my annotations on how to build Ubuntu Xenial Base Minimal Image (barebo
 
 
 For this instructions we need a chroot environment and kernel 4.11.6 pre-built.
-I have a ready kernel 4.11.6 built with GCC 7.1 but you can use any kernel or build your own.
-These instructions works with Ubuntu Xenial (linux box) but can be adapted to any Distro and can be used with others boards if you have a Kernel ready.
+I have a ready kernel 4.11.6 built with **GCC 7.1** but you can use any kernel or build your own.
+These instructions works with Ubuntu Xenial (linux box) but can be adapted to any Distro and can be used with other boards if you have a Kernel ready.
 
 * Ubuntu Xenial 16.04 (Ubuntu Base)
 * 62 MB of RAM in use
@@ -45,7 +45,7 @@ Instructions
 
 or
 
-	Use *Clone or download* green button
+	Use [Clone or download] green button
 	uncompress
 	cd nanopi-m3-ubuntu-base-minimal-master
 
@@ -74,7 +74,7 @@ We need the chroot tools to access the ARM64 Ubuntu Base rootfs from the X86_64 
 	[  182.202709] EXT4-fs (sdc2): mounted filesystem without journal. Opts: (null)
 	
 
-The SD CARD is in the format /dev/sdX where X is a letter (b,c,....), in our case is c
+The SD CARD is in the format /dev/sdX where X is a letter (b,c,....), in our case is c (from above)
 
 	sd card is /dev/sdc
 
@@ -173,6 +173,10 @@ and save
 	sudo dd if=u-boot.bin of=/dev/sdc seek=64
 	sync
 
+
+Exit from **su** (root)
+
+	exit
 
 **14. We have now our Ubuntu Base Minimal Image on SD CARD**
 
