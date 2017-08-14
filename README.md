@@ -173,7 +173,7 @@ and save
 	sync
 
 
-**14. We have now our Ubuntu Base Minimal Image on SD CARD **
+**14. We have now our Ubuntu Base Minimal Image on SD CARD**
 
 	Just make sure the SD CARD is unmounted e and remove it from the USB reader/writer
 
