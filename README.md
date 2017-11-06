@@ -108,13 +108,13 @@ Change the SDCARD=/dev/sdX (our sd card device) to your /dev/sdX (X is your devi
 **8. Prepare the SD CARD to chroot**
 
 	cp /usr/bin/qemu-aarch64-static ./rootfs/usr/bin/
+        cp /usr/bin/qemu-arm-static ./rootfs/usr/bin/
 	sync
 
 
 **9. Prepare chroot to add some needed packages**
 
-	cp -fv /etc/resolv.conf ./etc/resolv.conf
-	cp -rvf ./etc/* ./rootfs/etc
+	cp -fv /etc/resolv.conf ./rootfs/etc/resolv.conf
 	sync
 
 
